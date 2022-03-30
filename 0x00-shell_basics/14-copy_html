@@ -1,1 +1,2 @@
-#!/bin/bash                                                                     cp --update *.html ..
+#!/bin/bash                                                         
+cp --update *.html .. 
