@@ -13,8 +13,7 @@ if __name__ == "__main__":
         name = respo.json().get("name")
         if name:
             allreq = requests.get(
-                    "{}todos?userid={}".format(
-                    page, emp_id)).json()
+                    "{}todos?userid={}".format(page, emp_id)).json()
             alltsk = len(allreq)
             complatedtask = []
             for t in allreq:
