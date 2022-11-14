@@ -7,20 +7,21 @@ from sys import argv
 
 if __name__ == "__main__":
     if len(argv) > 1:
-        emp_id = argv[1]
-        page = "https://jsonplaceholder.typicode.com/"
-        respo = requests.get("{}users/{}".format(page, emp_id))
-        name = respo.json().get("name")
-        if name:
-            allreq = requests.get(
-                    "{}todos?userid={}".format(page, emp_id)).json()
-            alltsk = len(allreq)
-            complatedtask = []
-            for t in allreq:
+        user = argv[1]
+        url = "https://jsonplaceholder.typicode.com/"
+        req = requests.get("{}users/{}".format(url, user))
+        name = req.json().get("name")
+        if name is not None:
+            jreq = requests.get(
+                "{}todos?userId={}".format(
+                    url, user)).json()
+            alltsk = len(jreq)
+            completedtsk = []
+            for t in jreq:
                 if t.get("completed") is True:
-                    complatedtask.append(t)
-            count = len(complatedtask)
+                    completedtsk.append(t)
+            count = len(completedtsk)
             print("Employee {} is done with tasks({}/{}):"
                   .format(name, count, alltsk))
-            for title in complatedtask:
+            for title in completedtsk:
                 print("\t {}".format(title.get("title")))
