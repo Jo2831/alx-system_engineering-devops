@@ -2,6 +2,7 @@
 """This python module contains a script that interacts with the Reddit API"""
 import requests
 
+
 def number_of_subscribers(subreddit):
     """Queries a reddit api and returns the number of subscribers for
     a given subredit"""
