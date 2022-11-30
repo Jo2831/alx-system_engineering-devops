@@ -1,13 +1,19 @@
 #!/usr/bin/python3
-"""This python module contains a script that interacts with the Reddit API"""
+""" Function that queries the Reddit API """
 import requests
+import sys
 
 
 def number_of_subscribers(subreddit):
-    """Queries a reddit api and returns the number of subscribers for
-    a given subredit"""
-    header = {"User-Agent": "alx_project: josi"}
-    res = requests.get("https://www.reddit.com/r/{}/about.json".format(subreddit),
-              headers=header, allow_redirects=False)
-    code = res.status_code
-    return 0 if code == 404 else res.json().get("data").get("subscribers")
+    """  Args:
+        subreddit: subreddit name
+    Returns:
+        number of subscribers to the subreddit,
+        or 0 if subreddit requested is invalid"""
+    headers = {'User-Agent': 'alx_project: josi'}
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    response = requests.get(url, headers=headers, allow_redirects=False)
+
+    if response.status_code == 200:
+        return (response.json().get("data").get("subscribers"))
+    return (0)
